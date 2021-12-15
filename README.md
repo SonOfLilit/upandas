@@ -2,7 +2,7 @@
 
 A minimal partial clone of the Pandas API intended for teaching purposes.
 
-Written during a lesson in [Aur's Dojo (he)](https://www.facebook.com/%D7%93%D7%95%D7%92%D7%95-%D7%94%D7%AA%D7%9B%D7%A0%D7%95%D7%AA-%D7%A9%D7%9C-%D7%90%D7%90%D7%95%D7%A8-111102191064164/).
+Written during a lesson in [Aur's Dojo (hebrew)](https://www.facebook.com/%D7%93%D7%95%D7%92%D7%95-%D7%94%D7%AA%D7%9B%D7%A0%D7%95%D7%AA-%D7%A9%D7%9C-%D7%90%D7%90%D7%95%D7%A8-111102191064164/).
 
 ## Usage
 
