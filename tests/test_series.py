@@ -34,6 +34,10 @@ def test_no_index_passed():
     assert s.loc[0] == 5
     assert s.loc[1] == 4
 
+def test_index():
+    s = ud.Series([5, 4, 3], index=['A', 'B', 'C'])
+    assert s.index == ['A', 'B', 'C']
+
 def test_repr():
     s = ud.Series([1, 2, 3], index=['A', 'B', 'C'])
     assert repr(s) == """\
@@ -57,3 +61,11 @@ def test_slice():
     assert list(s[1:3]) == [('B', 2), ('C', 3)]
     assert list(s[5:]) == []
     assert list(s[-1:]) == [('D', 4)]
+
+def test_numpy_functions():
+    s = ud.Series([1, 2, 3, 4, 0.5], index=['A', 'B', 'C', 'D', 'E'])
+    assert np.sum(s) == 1+2+3+4+0.5
+    assert np.sign(s) == ud.Series(np.ones(5), index=s.index)
+
+    assert s.sum() == np.sum(s)
+    assert s.cumsum() == ud.Series([1, 3, 6, 10, 10.5], index=s.index)
