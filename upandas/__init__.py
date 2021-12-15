@@ -27,6 +27,14 @@ class Series:
     def _build_index(self, obj):
         self.index = {k: i for i, k in enumerate(obj)}
         self.reverse_index = list(obj)
+        self.is_numeric_index = any(isinstance(v, int) for v in self.reverse_index)
+
+    def __getitem__(self, i):
+        if isinstance(i, slice):
+            return Series(self.data[i], index=self.reverse_index[i])
+        if self.is_numeric_index:
+            return self._loc(i)
+        return self.data[i]
 
     @property
     def loc(self):

@@ -41,3 +41,19 @@ A\t1.0
 B\t2.0
 C\t3.0
 dtype:float64"""
+
+def test_access_by_numeric_index():
+    s = ud.Series([1, 2, 3], index=['A', 'B', 'C'])
+    assert s[0] == 1
+    assert s[2] == 3
+
+def test_access_by_numeric_index_with_numeric_index():
+    s = ud.Series([1, 2, 3], index=[2, 1, 0])
+    assert s[0] == 3
+    assert s[2] == 1
+
+def test_slice():
+    s = ud.Series([1, 2, 3, 4], index=['A', 'B', 'C', 'D'])
+    assert list(s[1:3]) == [('B', 2), ('C', 3)]
+    assert list(s[5:]) == []
+    assert list(s[-1:]) == [('D', 4)]
