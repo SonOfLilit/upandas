@@ -6,8 +6,10 @@ class LocHandler:
         return self.obj.data[self.obj.index[key]]
 
 class Series:
-    def __init__(self, data, index):
+    def __init__(self, data, index=None):
         self.data = data
+        if index is None:
+            index = range(len(self.data))
         self.index = self._build_index(index)
 
     @staticmethod
