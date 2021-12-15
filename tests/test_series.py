@@ -1,3 +1,5 @@
+import pytest
+
 import numpy as np
 import upandas as ud
 
@@ -15,6 +17,17 @@ def test_build_from_dict():
     s = ud.Series({'A': 1, 'B': 2, 'C': 3})
     assert s.loc['A'] == 1
     assert s.loc['C'] == 3
+
+def test_constant():
+    s = ud.Series(4, index=['A', 'B', 'C'])
+    assert s.loc['A'] == 4
+    assert s.loc['C'] == 4
+
+def test_same_size():
+    with pytest.raises(ValueError):
+        ud.Series([1, 2, 3], index=['A', 'B', 'C', 'D'])
+    with pytest.raises(ValueError):
+        ud.Series([1, 2, 3], index=['A', 'B'])
 
 def test_no_index_passed():
     s = ud.Series([5, 4, 3])

@@ -12,10 +12,16 @@ class Series:
         if isinstance(data, dict):
             index = list(data.keys())
             data = [data[k] for k in index]
+        if not hasattr(data, '__iter__'):
+            if index is None:
+                raise ValueError("constant series must have an index")
+            data = data * np.ones(len(index))
         data = np.array(data, dtype=np.float64)
         self.data = data
         if index is None:
             index = range(len(self.data))
+        if len(data) != len(index):
+            raise ValueError("data and index have different sizes")
         self._build_index(index)
 
     def _build_index(self, obj):
